@@ -27,7 +27,7 @@ Investigate the automatic prediction of parameters pV and VtV as described in th
 **Results**
 
 Manual inspection of aligned truth and prediction in Praat already shows a lot of un-alignemnt.
-<img src="images/pause_treatment.png"/>
+<img src="images/pause_treatment.png" width="50%"/>
 
 
 Especially pV did not work very well, as shown in the scatter plot for VtV and pV, with low Mean Absolute Error for PV: 7.002, and VtV: 0.008.
@@ -40,12 +40,21 @@ but, according to the paper, pV is more important.
 
 
 
-Here's a regression plot for only pV, with a very low Pearson's coefficient.
+Here's a regression plot for only pV
 
 <img src="images/pv_regression.png" width="50%"/>
 
-And here is one for vTV, with a much higher one.
+And here is one for vTV
 
 <img src="images/vtv_regression.png" width="50%"/>
 
 
+I tried the features as a predictor for Parkinson's disease with the [Spanish Parkinson's disease data](http://www.lrec-conf.org/proceedings/lrec2014/pdf/7_Paper.pdf) (LREC 2014) using [nkululeko](https://github.com/felixbur/nkululeko), but, as to be expected, none of the two features was very different for PD and control.
+
+Here are violin plots for pV:
+
+<img src="images/pv_spanish.png" width="50%"/>
+
+and VtV:
+
+<img src="images/vtv_spanish.png" width="50%"/>
