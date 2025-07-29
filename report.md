@@ -27,7 +27,7 @@ Investigate the automatic prediction of parameters pV and VtV as described in th
 **Results**
 
 Manual inspection of aligned truth and prediction in Praat already shows a lot of un-alignemnt.
-<img src="images/pause_treatment.png" width="50%"/>
+<img src="images/pause_treatment.png"/>
 
 
 Especially pV did not work very well, as shown in the scatter plot for VtV and pV, with low Mean Absolute Error for PV: 7.002, and VtV: 0.008.
@@ -58,3 +58,7 @@ Here are violin plots for pV:
 and VtV:
 
 <img src="images/vtv_spanish.png" width="50%"/>
+
+# Summary
+
+It seems the automatic extraction did not work very well, which is mostly based on the low accuracy of the allosaurus package (inspect the transription plot above).
