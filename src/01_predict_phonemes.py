@@ -10,9 +10,6 @@ gt_file = "ground_truth.csv"
 out_dir = "."
 cache = "cache"
 mean_dur = 0.09  # Mean duration in seconds
-vowels = ["e", "i", "a", "o", "u", "ɪ", "ɛ", "ɔ", "ʊ", "ʌ", "ɑ", "æ", "uː",
-          "y", "ø", "œ", "ɶ", "ɒ", "ɜ", "ɐ", "ɪə", "eə", "ʊə", "aɪ", "aʊ", "ɔɪ", "a:ʊ", "ɔː", "ɪː", "eː", "uː", "oː", "aː", "ɒː", "ɜː", "ɐː", "iː", "eɪ", "oʊ", "aʊə", "aʊəː"]
-pause_symbol = "X"  # Symbol for pause in phoneme output
 
 
 audeer.mkdir(out_dir)
