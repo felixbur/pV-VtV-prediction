@@ -1,0 +1,7 @@
+allosaurus
+pandas
+audformat
+jupyter
+audmetric
+matplotlib
+seaborn
