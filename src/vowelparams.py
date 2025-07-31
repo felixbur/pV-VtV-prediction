@@ -164,16 +164,18 @@ class VowelParams:
             # If we find a plosive before a vowel,
             # we shift its start 50% of the duration of the previous phoneme
             # and its end 10 milliseconds before the start of the vowel
+            perc_phon_dur = 0.5  # Percentage of phoneme duration to shift
+            s_plos_short = 0.04  # Short shift for plosive end
             if i < len(starts) - 2 \
                     and phonemes[i+1] in self.plosives \
                     and phonemes[i+2] in self.vowels:
                 # this phoneme
                 old_dur = dur
-                dur = old_dur * .5
+                dur = old_dur * perc_phon_dur
                 end = start + dur
                 # the plosive
                 starts[i+1] = end
-                starts[i+2] = starts[i+2] - 0.01
+                starts[i+2] = starts[i+2] - s_plos_short
             # Remove None values from starts and phonemes
             if starts[i] is None or phonemes[i] is None:
                 continue

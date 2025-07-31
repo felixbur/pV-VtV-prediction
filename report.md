@@ -30,10 +30,10 @@ Manual inspection of aligned truth and prediction in Praat already shows a lot o
 <img src="images/pause_treatment.png"/>
 
 
-Especially pV did not work very well, as shown in the scatter plot for VtV and pV, with low Mean Absolute Error for PV: 7.002, and VtV: 0.008.
+Especially pV did not work very well, as shown in the scatter plot for VtV and pV, with low Mean Absolute Error for PV: 6.72, and VtV: 0.008.
 
 VtV prediction is highly correlated with ground-truth:
-Pearson correlation for VtV: 0.945, pV: 0.254
+Pearson correlation for VtV: 0.937, pV: 0.312
 but, according to the paper, pV is more important.
 
 <img src="images/vtv_pv_scatter.png" width="50%"/>
