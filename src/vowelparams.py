@@ -13,12 +13,13 @@ class VowelParams:
     mean_dur = 0.09  # Mean duration of phoneme in seconds
     vowels = ["e", "i", "a", "o", "u", "ɪ", "ɛ", "ɔ", "ʊ", "ʌ", "ɑ", "æ", "uː",
               "y", "ø", "œ", "ɶ", "ɒ", "ɜ", "ɐ", "ɪə", "eə", "ʊə", "aɪ", "aʊ", "ɔɪ", "a:ʊ", "ɔː", "ɪː", "eː", "uː", "oː", "aː", "ɒː", "ɜː", "ɐː", "iː", "eɪ", "oʊ", "aʊə", "aʊəː"]
+    plosives = ["p", "b", "t", "d", "k", "g"]
+    pause_symbol = "X"  # Symbol for pause in phoneme output
 
     def __init__(self, lang="ipa", cache="cache"):
         self.model = read_recognizer()
         self.lang = lang
         self.cache = cache
-        self.pause_symbol = "X"  # Symbol for pause in phoneme output
         audeer.mkdir(self.cache)
         pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -105,7 +106,7 @@ class VowelParams:
         if phoneme in self.vowels:
             return 'V'
         elif phoneme == self.pause_symbol:
-            return 'X'
+            return self.pause_symbol
         else:
             return 'C'
 
@@ -158,6 +159,25 @@ class VowelParams:
             else:
                 end = start + mean_dur  # add mean for last phoneme
             dur = end - start
+            # it seems that allosaurus takes the closed phase of a phoneme
+            # still as the previous phoneme, so we need to adjust the start times.
+            # If we find a plosive before a vowel,
+            # we shift its start 50% of the duration of the previous phoneme
+            # and its end 10 milliseconds before the start of the vowel
+            if i < len(starts) - 2 \
+                    and phonemes[i+1] in self.plosives \
+                    and phonemes[i+2] in self.vowels:
+                # this phoneme
+                old_dur = dur
+                dur = old_dur * .5
+                end = start + dur
+                # the plosive
+                starts[i+1] = end
+                starts[i+2] = starts[i+2] - 0.01
+            # Remove None values from starts and phonemes
+            if starts[i] is None or phonemes[i] is None:
+                continue
+
             # If the duration is longer than 3 times the mean duration, set it to mean
             mean_dur = 0.09  # Mean duration in seconds
             if dur > 3 * mean_dur:
